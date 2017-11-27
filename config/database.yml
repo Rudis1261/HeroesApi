@@ -1,6 +1,6 @@
 default: &default
   adapter: mysql2
-  database: skeleton
+  database: heroes-api
   username: root
   password: root
   host: 127.0.0.1
@@ -12,6 +12,6 @@ development:
 production:
   <<: *default
   host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
-  database: <%= ENV['DB_NAME'] || 'skeleton' %>
+  database: <%= ENV['DB_NAME'] || 'heroes-api' %>
   username: <%= ENV['DB_USER'] || 'root' %>
   password: <%= ENV['DB_PASS'] || 'root' %>

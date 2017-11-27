@@ -16,6 +16,7 @@ class App < Sinatra::Base
   set :assets_prefix, '/assets'
   set :digest_assets, false
   set :static, true
+  set :port, 3000
   set :public_folder, 'public'
   set :views, 'views'
   set :show_exceptions, false
