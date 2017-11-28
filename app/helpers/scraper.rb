@@ -45,6 +45,7 @@ module ScraperHelper
 
 
   def parse_json_data(data)
+    #return data
     data = JSON.parse(data).map do |hero|
       {
           'name' => hero['name'],
@@ -55,6 +56,13 @@ module ScraperHelper
           'type' => hero['type']['name'],
           'franchise' => hero['franchise'],
           'difficulty' => hero['difficulty'],
+          'live' => hero['revealed'],
+          'stats' => {
+              'damage' => hero['stats']['damage'] ||= 0,
+              'utility' => hero['stats']['utility'] ||= 0,
+              'survivability' => hero['stats']['survivability'] ||= 0,
+              'complexity' => hero['stats']['v'] ||= 0
+          }
       }
     end
 
@@ -68,6 +76,7 @@ module ScraperHelper
 
 
   def find_hero_by_name(name)
+    name = name.to_s.downcase
     heroes = self.scrape_heroes
     return self.error if heroes.nil?
 
@@ -81,6 +90,7 @@ module ScraperHelper
 
 
   def find_hero_by_term(term)
+    term = term.to_s.downcase
     heroes = self.scrape_heroes
     return self.error if heroes.nil?
 
