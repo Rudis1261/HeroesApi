@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"first",
+				"firstHero"
+			],
+			[
+				"fir",
+				"firstHero"
+			],
+			[
+				"to_",
+				"to_json"
+			],
+			[
+				"par",
+				"parse_page"
+			],
+			[
 				"sce",
 				"scene_name"
 			],
@@ -498,27 +514,63 @@
 			[
 				"$stre",
 				"$streamUrl"
-			],
-			[
-				"$stream",
-				"$streamers"
-			],
-			[
-				"$video",
-				"$videoReference"
-			],
-			[
-				"$item",
-				"$itemsBySize"
-			],
-			[
-				"$fileName",
-				"$fileNames"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "app/helpers/scraper.rb",
+			"settings":
+			{
+				"buffer_size": 524,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.rb",
+			"settings":
+			{
+				"buffer_size": 915,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/helpers/application.rb",
+			"settings":
+			{
+				"buffer_size": 237,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/database.yml",
+			"settings":
+			{
+				"buffer_size": 363,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gemfile",
+			"settings":
+			{
+				"buffer_size": 359,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/application_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1085,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -577,11 +629,32 @@
 	},
 	"expanded_folders":
 	[
-		"/home/rudis1261/GitHub/HeroesApi"
+		"/home/rudis1261/GitHub/HeroesApi",
+		"/home/rudis1261/GitHub/HeroesApi/app",
+		"/home/rudis1261/GitHub/HeroesApi/app/controllers",
+		"/home/rudis1261/GitHub/HeroesApi/app/helpers",
+		"/home/rudis1261/GitHub/HeroesApi/config",
+		"/home/rudis1261/GitHub/HeroesApi/public",
+		"/home/rudis1261/GitHub/HeroesApi/spec",
+		"/home/rudis1261/GitHub/HeroesApi/spec/app",
+		"/home/rudis1261/GitHub/HeroesApi/spec/app/helpers"
 	],
 	"file_history":
 	[
+		"/home/rudis1261/GitHub/HeroesApi/config.ru",
+		"/home/rudis1261/GitHub/HeroesApi/app/helpers/application.rb",
+		"/home/rudis1261/GitHub/HeroesApi/config/config.yml",
+		"/home/rudis1261/GitHub/HeroesApi/README.md",
+		"/home/rudis1261/GitHub/HeroesApi/spec/app_spec.rb",
 		"/home/rudis1261/GitHub/RubySkeleton/spec/app_spec.rb",
+		"/home/rudis1261/GitHub/HeroesApi/Gemfile",
+		"/home/rudis1261/GitHub/HeroesApi/app.rb",
+		"/home/rudis1261/.config/sublime-text-3/Packages/GoSublime/CHANGELOG.md",
+		"/home/rudis1261/GitHub/HeroesApi/app/controllers/application_controller.rb",
+		"/home/rudis1261/GitHub/HeroesApi/curl.txt",
+		"/home/rudis1261/GitHub/HeroesApi/config/database.yml",
+		"/home/rudis1261/GitHub/HeroesApi/views/layout.erb",
+		"/home/rudis1261/GitHub/RubySkeleton/views/layout.erb",
 		"/home/rudis1261/GitHub/RubySkeleton/config.ru",
 		"/home/rudis1261/GitHub/RubySkeleton/spec/spec_helper.rb",
 		"/home/rudis1261/GitHub/RubySkeleton/db/seeds.rb",
@@ -695,20 +768,7 @@
 		"/home/rudis1261/GitHub/TVTracker/src/app/services/auth-guard.service.ts",
 		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.alerts.php",
 		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.notification.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.auth.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/controllers/controller_series.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.episodes.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/controllers/controller_test.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.series.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.show.php",
-		"/home/rudis1261/GitHub/TVTracker/src/assets/scss/_keyframes.scss",
-		"/home/rudis1261/GitHub/TVTracker/src/assets/scss/_base.scss",
-		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.config.php",
-		"/home/rudis1261/DockIt/src/public/tvt2/controllers/controller_alerts.php",
-		"/home/rudis1261/GitHub/TVTracker/src/app/home/home.component.scss",
-		"/home/rudis1261/GitHub/TVTracker/src/app/shared/episode-box/episode-box.component.scss",
-		"/home/rudis1261/GitHub/TVTracker/src/app/shared/episode-box/episode-box.component.html",
-		"/home/rudis1261/GitHub/TVTracker/src/app/shared/episode-box/episode-box.component.ts"
+		"/home/rudis1261/DockIt/src/public/tvt2/includes/classes/class.auth.php"
 	],
 	"find":
 	{
@@ -726,6 +786,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ScraperHelpers",
+			"MODE",
+			"'')\n",
+			"window.heroes",
+			"heroes",
+			"heroes=",
+			"heroes = ",
+			"heroes",
+			"thrall",
+			"heroes",
+			"\n    ",
+			"\n  context \"Listing all heroes /all\" do\n    let(:response) { get \"/all\" }\n\n    it \"Should respond: 200\" do\n      expect(response.status).to eq 200\n    end\n  end",
 			"puts",
 			"Finished",
 			"pet",
@@ -750,8 +822,191 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/helpers/scraper.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								512,
+								512
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 915,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								263,
+								266
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/helpers/application.rb",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config/database.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								123,
+								123
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Gemfile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								43,
+								43
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/controllers/application_controller.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								92,
+								92
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],

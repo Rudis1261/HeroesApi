@@ -1,5 +1,5 @@
 # Dependencies
-require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'json'
 require 'httparty'
@@ -9,18 +9,32 @@ Dir.glob('app/{models,helpers,controllers}/*.rb').each {|file| require_relative 
 
 # Main app
 class App < Sinatra::Base
-  set :root, File.dirname(__FILE__)
-  set :static, true
-  set :port, 3000
-  set :public_folder, 'public'
-  set :show_exceptions, false
-  #set :method_override, true # when using post for put / delete etc...
-  set :session_secret, 'Super awesome random session string'
-  enable :sessions
-
 
   # Controllers
   use ApplicationController
+
+  configure(:production){  p "Running in Production mode" }
+  configure(:development){ p "Running in Development mode" }
+
+  configure do
+    set :root, File.dirname(__FILE__)
+    set :static, true
+    set :port, 3000
+    set :public_folder, 'public'
+    set :show_exceptions, false
+    set :session_secret, 'Super awesome random session string'
+    enable :sessions
+
+    # Some application settings, probably doing this wrong, but the controller extends from Sinatra,
+    # so I am not able to access the settings
+    ApplicationController.base_url = 'http://eu.battle.net/heroes/en/heroes/'
+    ApplicationController.local_file = File.dirname(__FILE__) + '/data/heroes.json'
+    ApplicationController.local_file_cache_time = 10
+  end
+
+  configure :production do
+    ApplicationController.local_file_cache_time = 86400.0
+  end
 
   error do
     puts env['sinatra.error'].inspect

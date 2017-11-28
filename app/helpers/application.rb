@@ -1,10 +1,4 @@
-module ApplicationHelpers
-  def scrape
-    doc = HTTParty.get('http://eu.battle.net/heroes/en/heroes/#')
-    heroes = doc.body.scan(/window\.heroes(.+);/)[0]
-  end
-
-
+module ApplicationHelper
   # def admin_required
   #   query = {
   #       'redirect' => request.path_info

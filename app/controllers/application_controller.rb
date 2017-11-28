@@ -1,6 +1,16 @@
 class ApplicationController < Sinatra::Base
   #include AuthHelpers
-  include ApplicationHelpers
+  #include ApplicationHelpers
+  include ScraperHelper
+
+  def self.base_url=(url); @base_url = url; end
+  def self.base_url; @base_url; end
+
+  def self.local_file=(fileName); @local_file = fileName; end
+  def self.local_file; @local_file; end
+
+  def self.local_file_cache_time=(miliseconds); @local_file_cache_time = miliseconds; end
+  def self.local_file_cache_time; @local_file_cache_time; end
 
   set :views, File.expand_path('../../../views', __FILE__)
 
@@ -19,30 +29,21 @@ class ApplicationController < Sinatra::Base
     return JSON.pretty_generate(data)
   end
 
-
-  get '/all' do
-    data = {}
-    return JSON.pretty_generate(data)
+  ['/all', '/scrape'].each do |route|
+    get "#{route}" do
+      return scrape_heroes
+    end
   end
 
-
-  get '/hero/:name' do
-    data = {
-        'name': params[:name] ||= 'No name provided'
-    }
-    return JSON.pretty_generate(data)
+  ['/hero/:name', '/name/:name'].each do |route|
+    get "#{route}" do
+      return find_hero_by_name(params[:name])
+    end
   end
 
-
-  get '/search/:term' do
-    data = {
-        'term': params[:term] ||= 'No search term provided'
-    }
-    return JSON.pretty_generate(data)
-  end
-
-  get '/scrape' do
-    #return JSON.pretty_generate scrape
-    return scrape
+  ['/search/:term', '/find/:term'].each do |route|
+    get "#{route}" do
+      return find_hero_by_term(params[:term])
+    end
   end
 end

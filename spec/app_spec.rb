@@ -25,7 +25,7 @@ describe App do
     end
   end
 
-  heroes = ['thrall', 'ana', 'tyreal']
+  heroes = ['thrall', 'ana', 'tyrael', 'junkrat']
   heroes.each do |hero|
     context "Hero By Name /hero/#{hero}" do
       let(:response) { get "/hero/#{hero}" }
@@ -40,7 +40,7 @@ describe App do
     end
   end
 
-  terms = ['thral', 'ana', 'kehl']
+  terms = ['thral', 'ana', 'kael']
   terms.each do |term|
     context "Search for hero with term /search/#{term}" do
       let(:response) { get "/search/#{term}" }
@@ -50,7 +50,7 @@ describe App do
       end
 
       it "Should contain search term #{term}" do
-        #expect(response.body).to match(%r{#{term}})
+        expect(response.body).to include(term)
       end
     end
   end
