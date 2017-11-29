@@ -63,6 +63,18 @@ describe App do
     end
   end
 
+  # names in this case need to be specific
+  names = ['thrall', 'ana']
+  names.each do |name|
+    context "Scraping for a specific hero" do
+      let(:response) { get "/scrape/#{name}" }
+
+      it "Should respond: 200" do
+        expect(response.status).to eq 200
+      end
+    end
+  end
+
   # context "Admin Sections" do
   #   let(:response) { get "/admin" }
 

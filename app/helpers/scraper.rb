@@ -2,10 +2,11 @@ module ScraperHelper
 
   def error(message = false)
     {
-        :error => true,
-        :message => message ||= 'Unable to process your request'
+      :error => true,
+      :message => message ||= 'Unable to process your request'
     }.to_json
   end
+
 
   def scrape_heroes
     cached = self.read_from_disk
@@ -34,6 +35,28 @@ module ScraperHelper
   end
 
 
+  def scrape_hero(name)
+    return if name.nil?
+
+    doc = HTTParty.get(ApplicationController.hero_base_url % name)
+    data = doc.body.scan(/window\.hero.+= (.+);/)
+
+    # Fall back should a request fail, try and force read locally
+    # if (data.nil? || data[0].nil? || data[0].first.nil?)
+    #   puts "Failed to scrape, falling back to local cached file"
+    #   return self.read_from_disk true
+    # end
+
+    hero = JSON.parse(data[0].first).to_json
+    if !hero.nil?
+      #self.save_to_disk(hero)
+      return parse_hero_json_data hero
+    else
+      return self.error 'Unabled to scrape hero data'
+    end
+  end
+
+
   def read_from_disk(force = false)
     return nil if !File.exists?(ApplicationController.local_file)
     return nil if !force && ((Time.now - File.mtime(ApplicationController.local_file)).to_i / ApplicationController.local_file_cache_time) > 1
@@ -41,6 +64,16 @@ module ScraperHelper
     puts "Reading feed from cache"
 
     File.read(ApplicationController.local_file)
+  end
+
+  def read_hero_from_disk(name, force = false)
+    return if name.nil?
+    return nil if !File.exists?(ApplicationController.hero_local_file % name)
+    return nil if !force && ((Time.now - File.mtime(ApplicationController.hero_local_file % name)).to_i / ApplicationController.local_file_cache_time) > 1
+
+    puts "Reading hero feed from cache"
+
+    File.read(ApplicationController.hero_local_file % name)
   end
 
 
@@ -69,9 +102,38 @@ module ScraperHelper
     return data.to_json
   end
 
+  def parse_hero_json_data(data)
+    hero = JSON.parse(data);
+    #return hero.to_json
+    {
+      'name' => hero['name'],
+      'slug' => hero['slug'],
+      'title' => hero['title'],
+      'description' => hero['role']['description'],
+      'role' => hero['role']['name'],
+      'type' => hero['type']['name'],
+      'franchise' => hero['franchise'],
+      'difficulty' => hero['difficulty'],
+      'live' => hero['revealed'],
+      'stats' => {
+        'damage' => hero['stats']['damage'] ||= 0,
+        'utility' => hero['stats']['utility'] ||= 0,
+        'survivability' => hero['stats']['survivability'] ||= 0,
+        'complexity' => hero['stats']['v'] ||= 0
+      }
+    }.to_json
+  end
+
+
   def save_to_disk(data)
     data = self.parse_json_data(data)
     File.open(ApplicationController.local_file, 'w') { |file| file.write(data) }
+  end
+
+  def save_hero_to_disk(name, data)
+    return nil if name.nil?
+    data = self.parse_hero_json_data(data)
+    File.open(ApplicationController.hero_local_file % name, 'w') { |file| file.write(data) }
   end
 
 

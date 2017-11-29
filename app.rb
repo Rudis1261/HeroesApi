@@ -28,7 +28,9 @@ class App < Sinatra::Base
     # Some application settings, probably doing this wrong, but the controller extends from Sinatra,
     # so I am not able to access the settings
     ApplicationController.base_url = 'http://eu.battle.net/heroes/en/heroes/'
+    ApplicationController.hero_base_url = 'http://eu.battle.net/heroes/en/heroes/%s/'
     ApplicationController.local_file = File.dirname(__FILE__) + '/data/heroes.json'
+    ApplicationController.hero_local_file = File.dirname(__FILE__) + '/data/heroes/%s'
     ApplicationController.local_file_cache_time = 10
   end
 
