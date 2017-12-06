@@ -32,6 +32,10 @@ class App < Sinatra::Base
     ApplicationController.local_file = File.dirname(__FILE__) + '/data/heroes.json'
     ApplicationController.hero_local_file = File.dirname(__FILE__) + '/data/heroes/%s'
     ApplicationController.local_file_cache_time = 10
+    ApplicationController.image_urls = {
+        'bust' => 'http://media.blizzard.com/heroes/%s/bust.jpg',
+        'trait' => 'http://media.blizzard.com/heroes/%s/abilities/icons/%s.png'
+    }
   end
 
   configure :production do

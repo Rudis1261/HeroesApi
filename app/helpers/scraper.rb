@@ -47,10 +47,10 @@ module ScraperHelper
     #   return self.read_from_disk true
     # end
 
-    hero = JSON.parse(data[0].first).to_json
+    hero = JSON.parse(data[0].first)
     if !hero.nil?
-      #self.save_to_disk(hero)
-      return parse_hero_json_data hero
+      #self.save_hero_to_disk(hero)
+      return self.parse_hero_json_data(hero).to_json
     else
       return self.error 'Unabled to scrape hero data'
     end
@@ -80,31 +80,59 @@ module ScraperHelper
   def parse_json_data(data)
     #return data
     data = JSON.parse(data).map do |hero|
-      {
-          'name' => hero['name'],
-          'slug' => hero['slug'],
-          'title' => hero['title'],
-          'description' => hero['role']['description'],
-          'role' => hero['role']['name'],
-          'type' => hero['type']['name'],
-          'franchise' => hero['franchise'],
-          'difficulty' => hero['difficulty'],
-          'live' => hero['revealed'],
-          'stats' => {
-              'damage' => hero['stats']['damage'] ||= 0,
-              'utility' => hero['stats']['utility'] ||= 0,
-              'survivability' => hero['stats']['survivability'] ||= 0,
-              'complexity' => hero['stats']['v'] ||= 0
-          }
-      }
+      parse_hero_json_data hero
     end
 
     return data.to_json
   end
 
-  def parse_hero_json_data(data)
-    hero = JSON.parse(data);
-    #return hero.to_json
+  def parse_hero_json_data(hero)
+
+    @data = {}
+    @keys = {
+        'heroics' => 'heroicAbilities',
+        'abilities' => 'abilities'
+    }
+
+    @data['trait'] = @values = {
+        'name' => '',
+        'description' => '',
+        'slug' => '',
+        'image' => ''
+    }
+
+    @stats = {
+        'damage' => hero['stats']['damage'] ||= 0,
+        'utility' => hero['stats']['utility'] ||= 0,
+        'survivability' => hero['stats']['survivability'] ||= 0,
+        'complexity' => hero['stats']['complexity'] ||= 0
+    }
+
+    @keys.each_key  do |key|
+      needle = @keys[key]
+      if !hero[needle].nil?
+        @data[key] = hero[needle].map do |item|
+            {
+                'name' => item['name'],
+                'description' => item['description'],
+                'slug' => item['slug'],
+                'image' => ApplicationController.image_urls['trait'] % [hero['slug'], item['slug']]
+            }
+          end
+      else
+        @data[key] = @values
+      end
+    end
+
+    if !hero['trait'].nil?
+      @data['trait'] = {
+          'name' => hero['trait']['name'],
+          'description' => hero['trait']['name'],
+          'slug' => hero['trait']['slug'],
+          'image' => ApplicationController.image_urls['trait'] % [hero['slug'], hero['trait']['slug']]
+      }
+    end
+
     {
       'name' => hero['name'],
       'slug' => hero['slug'],
@@ -115,13 +143,13 @@ module ScraperHelper
       'franchise' => hero['franchise'],
       'difficulty' => hero['difficulty'],
       'live' => hero['revealed'],
-      'stats' => {
-        'damage' => hero['stats']['damage'] ||= 0,
-        'utility' => hero['stats']['utility'] ||= 0,
-        'survivability' => hero['stats']['survivability'] ||= 0,
-        'complexity' => hero['stats']['v'] ||= 0
-      }
-    }.to_json
+      'poster_image' => ApplicationController.image_urls['bust'] % hero['slug'],
+      'stats' => @stats,
+      'trait' => @data['trait'],
+      'abilities' => @data['abilities'],
+      'heroics' => @data['heroics'],
+      #'original' => hero
+    }
   end
 
 

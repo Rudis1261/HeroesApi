@@ -9,16 +9,16 @@ end
 describe App do
   let(:app) { App.new }
 
-  context "Home Page /" do
-    let(:response) { get "/" }
+  context "Help Page /" do
+    let(:response) { get "/help" }
 
     it "Should respond: 200" do
       expect(response.status).to eq 200
     end
   end
 
-  context "Listing all heroes /all" do
-    let(:response) { get "/all" }
+  context "Home / Listing all /" do
+    let(:response) { get "/" }
 
     it "Should respond: 200" do
       expect(response.status).to eq 200

@@ -18,16 +18,19 @@ class ApplicationController < Sinatra::Base
   def self.local_file_cache_time=(miliseconds); @local_file_cache_time = miliseconds; end
   def self.local_file_cache_time; @local_file_cache_time; end
 
+  def self.image_urls=(urls={}); @image_urls = urls; end
+  def self.image_urls; @image_urls; end
+
   set :views, File.expand_path('../../../views', __FILE__)
 
   before do
     content_type :text
   end
 
-  get  '/' do
+  get  '/help' do
     data = {
-        '/' => 'Home',
-        '/all' => 'All heroes',
+        '/' => 'All heroes',
+        '/help' => 'Displays Help',
         '/hero/<name>' => 'A specific hero by slug',
         '/search/<term>' => 'Find a hero by name',
         '/scrape' => 'Scrape to update the heroes',
@@ -36,7 +39,7 @@ class ApplicationController < Sinatra::Base
     return JSON.pretty_generate(data)
   end
 
-  ['/all', '/scrape'].each do |route|
+  ['/', '/scrape'].each do |route|
     get "#{route}" do
       return scrape_heroes
     end
